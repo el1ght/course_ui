@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import MatrixEditor from './components/MatrixEditor'
 
 function App() {

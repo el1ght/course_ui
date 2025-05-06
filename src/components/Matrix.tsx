@@ -3,13 +3,15 @@ import { Button } from "@/components/ui/button"
 
 interface MatrixProps {
     matrix: number[][]
-    setMatrix: (matrix: string[][]) => void
+    setMatrix: (matrix: number[][]) => void
     columnLabels: string[]
     setColumnLabels: (labels: string[]) => void
     rowLabels: string[]
     setRowLabels: (labels: string[]) => void
     isDisabled?: boolean
     showControls?: boolean
+    onRemoveColumn?: (colIndex: number) => void
+    onRemoveRow?: (rowIndex: number) => void
 }
 
 export function Matrix({
@@ -20,10 +22,12 @@ export function Matrix({
                            rowLabels,
                            setRowLabels,
                            isDisabled = false,
-                           showControls = true
+                           showControls = true,
+                           onRemoveColumn,
+                           onRemoveRow,
                        }: MatrixProps) {
 
-    const handleChange = (row: number, col: number, value: string) => {
+    const handleChange = (row: number, col: number, value: number) => {
         setMatrix(prev => {
             const updated = [...prev]
             updated[row] = [...updated[row]]
@@ -49,12 +53,16 @@ export function Matrix({
     }
 
     const removeColumn = (colIndex: number) => {
-        setMatrix(prev => prev.map(row => row.filter((_, index) => index !== colIndex)))
+        if (onRemoveColumn) {
+            onRemoveColumn(colIndex)
+        }
         setColumnLabels(prev => prev.filter((_, index) => index !== colIndex))
     }
 
     const removeRow = (rowIndex: number) => {
-        setMatrix(prev => prev.filter((_, index) => index !== rowIndex))
+        if (onRemoveRow) {
+            onRemoveRow(rowIndex)
+        }
         setRowLabels(prev => prev.filter((_, index) => index !== rowIndex))
     }
 

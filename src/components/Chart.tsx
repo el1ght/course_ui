@@ -66,19 +66,17 @@ export function Chart({ data }: ChartProps) {
                 />
                 <Area
                     dataKey="aco"
-                    type="natural"
+                    type="linear"
                     fill="var(--color-aco)"
                     fillOpacity={0.4}
                     stroke="var(--color-aco)"
-                    stackId="a"
                 />
                 <Area
                     dataKey="prob"
-                    type="natural"
+                    type="linear"
                     fill="var(--color-prob)"
                     fillOpacity={0.4}
                     stroke="var(--color-prob)"
-                    stackId="a"
                 />
                 <ChartLegend content={<ChartLegendContent />} />
             </AreaChart>

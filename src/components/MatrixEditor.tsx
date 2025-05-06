@@ -524,7 +524,7 @@ export default function MatrixEditor() {
 
             <Card className="w-full overflow-auto">
                 <div className="mx-6 max-w-2xl flex-col gap-2">
-                    <div className="flex">
+                    <div className="flex my-5">
                         <Button onClick={handleSolve}>Solve</Button>
                     </div>
                     <h2 className="mt-6 mb-4">Ймовірнісний алгоритм</h2>
@@ -538,7 +538,7 @@ export default function MatrixEditor() {
                         isDisabled={true}
                         showControls={false}
                     />
-                    <div className="flex gap-2 mt-6 items-center max-w-30">
+                    <div className="flex gap-2 mt-6 my-5 items-center max-w-30">
                         <Input type="number" disabled id="output" value={probValue} placeholder="Output"/>
                     </div>
                     <h2 className="mt-6 mb-4">Алгоритм мурашиних колоній</h2>
@@ -552,7 +552,7 @@ export default function MatrixEditor() {
                         isDisabled={true}
                         showControls={false}
                     />
-                    <div className="flex gap-2 mt-6 items-center max-w-30">
+                    <div className="flex gap-2 mt-6 my-5 items-center max-w-30">
                         <Input type="number" disabled id="output" value={antValue} placeholder="Output"/>
                     </div>
                 </div>

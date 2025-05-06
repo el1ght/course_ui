@@ -13,11 +13,11 @@ const chartData = Array.from({length: 100}, (_, i) => ({
 }))
 
 export default function MatrixEditor() {
-    const [matrix, setMatrix] = useState<string[][]>([
-        ["", "", ""],
-        ["", "", ""],
-        ["", "", ""]
-    ])
+    const [matrix, setMatrix] = useState<number[][]>([
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0]
+    ]);
     const [columnLabels, setColumnLabels] = useState<string[]>(["Company 1", "Company 2", "Company 3"])
     const [rowLabels, setRowLabels] = useState<string[]>(["Technic 1", "Technic 2", "Technic 3"])
     const [newColumnLabel, setNewColumnLabel] = useState("")
@@ -128,7 +128,7 @@ export default function MatrixEditor() {
 
             <Card className="w-full overflow-auto">
                 <CardHeader>
-                    <CardTitle>Алгоритм 1</CardTitle>
+                    <CardTitle>Ймовірнісний алгоритм</CardTitle>
                     <CardDescription>Enter numeric values in the matrix below.</CardDescription>
                 </CardHeader>
 
@@ -147,52 +147,37 @@ export default function MatrixEditor() {
 
             <Card className="w-full overflow-auto">
                 <CardHeader>
-                    <CardTitle>Алгоритм 2</CardTitle>
+                    <CardTitle>Алгоритм мурашиних колоній</CardTitle>
                     <CardDescription>Enter numeric values in the matrix below.</CardDescription>
                 </CardHeader>
 
                 <CardContent>
-
-
                     <div className="mt-6 max-w-2xl flex gap-2">
                         <div className="flex gap-2 items-center max-w-30">
-
                             <Input type="text" id="input" placeholder="Input"/>
-
                         </div>
 
                         <div className="flex gap-2 items-center max-w-30">
-
                             <Input type="text" id="input" placeholder="Input"/>
-
                         </div>
 
                         <div className="flex gap-2 items-center max-w-30">
-
                             <Input type="text" id="input" placeholder="Input"/>
-
                         </div>
 
                         <div className="flex gap-2 items-center max-w-30">
-
                             <Input type="text" id="input" placeholder="Input"/>
-
                         </div>
 
                         <div className="flex gap-2 items-center max-w-30">
-
                             <Input type="text" id="input" placeholder="Input"/>
-
                         </div>
 
                         <div className="flex gap-2 items-center max-w-30">
-
                             <Input type="text" id="input" placeholder="Input"/>
-
                         </div>
                     </div>
                 </CardContent>
-
             </Card>
 
             <Card className="w-full overflow-auto">
@@ -200,8 +185,7 @@ export default function MatrixEditor() {
                     <div className="flex">
                         <Button>Solve</Button>
                     </div>
-
-                    <h2 className="mt-6 mb-4">ймовірнісний алгоритм</h2>
+                    <h2 className="mt-6 mb-4">Ймовірнісний алгоритм</h2>
                     <Matrix
                         matrix={matrix}
                         setMatrix={setMatrix}
@@ -212,12 +196,9 @@ export default function MatrixEditor() {
                         isDisabled={true}
                         showControls={false}
                     />
-
-
                     <div className="flex gap-2 mt-6 items-center max-w-30">
                         <Input type="text" disabled id="output" placeholder="Output"/>
                     </div>
-
                     <h2 className="mt-6 mb-4">Алгоритм мурашиних колоній</h2>
                     <Matrix
                         matrix={matrix}
@@ -229,16 +210,10 @@ export default function MatrixEditor() {
                         isDisabled={true}
                         showControls={false}
                     />
-
                     <div className="flex gap-2 mt-6 items-center max-w-30">
-
                         <Input type="text" disabled id="output" placeholder="Output"/>
-
                     </div>
-
-
                 </div>
-
             </Card>
 
             <Card>

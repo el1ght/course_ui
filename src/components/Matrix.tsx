@@ -1,9 +1,8 @@
-// components/Matrix.tsx
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
 interface MatrixProps {
-    matrix: string[][]
+    matrix: number[][]
     setMatrix: (matrix: string[][]) => void
     columnLabels: string[]
     setColumnLabels: (labels: string[]) => void
@@ -94,7 +93,8 @@ export function Matrix({
                         {row.map((value, colIndex) => (
                             <Input
                                 key={`${rowIndex}-${colIndex}`}
-                                type="text"
+                                type="number"
+                                step="any"
                                 placeholder="0"
                                 value={value}
                                 disabled={isDisabled}

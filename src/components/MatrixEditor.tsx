@@ -110,7 +110,6 @@ export default function MatrixEditor() {
         setDiscountMatrix(prev => prev.map(row => row.filter((_, index) => index !== colIndex)));
         setProbSolution(prev => prev.map(row => row.filter((_, index) => index !== colIndex)));
         setAntSolution(prev => prev.map(row => row.filter((_, index) => index !== colIndex)));
-        setColumnLabels(prev => prev.filter((_, index) => index !== colIndex));
     };
 
     const removeRow = (rowIndex: number) => {
@@ -119,7 +118,6 @@ export default function MatrixEditor() {
         setDiscountMatrix(prev => prev.filter((_, index) => index !== rowIndex));
         setProbSolution(prev => prev.filter((_, index) => index !== rowIndex));
         setAntSolution(prev => prev.filter((_, index) => index !== rowIndex));
-        setRowLabels(prev => prev.filter((_, index) => index !== rowIndex));
     };
 
 
@@ -356,7 +354,7 @@ export default function MatrixEditor() {
                                 // Автоматично встановлюємо загальний ресурс як суму всіх елементів помножену на 1.2
                                 const totalSum = newMatrix.reduce((sum, row) =>
                                     sum + row.reduce((rowSum, cell) => rowSum + cell, 0), 0);
-                                setTotalResource(Math.round(totalSum / 4));
+                                setTotalResource(Math.round(totalSum / 10));
                             }}
                         >
                             Randomize

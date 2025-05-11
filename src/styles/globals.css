@@ -121,3 +121,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+input[disabled]{
+  color: #000 !important;
+  opacity: 1;
+}

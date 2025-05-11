@@ -418,12 +418,12 @@ export default function MatrixEditor() {
             <Card className="w-full overflow-auto">
                 <CardHeader>
                     <CardTitle>Ймовірнісний алгоритм</CardTitle>
-                    <CardDescription></CardDescription>
                 </CardHeader>
 
                 <CardContent>
-                    <div className="mt-6 max-w-sm flex gap-2">
+                    <div className="max-w-sm flex gap-2">
                         <div className="flex gap-2 items-center max-w-30">
+                            <label className="text-gray-500 text-[14px]">Kmax</label>
                             <Input
                                 type="number"
                                 value={probabilisticParams.Kmax}
@@ -440,12 +440,13 @@ export default function MatrixEditor() {
             <Card className="w-full overflow-auto">
                 <CardHeader>
                     <CardTitle>Алгоритм мурашиних колоній</CardTitle>
-                    <CardDescription>Enter numeric values in the matrix below.</CardDescription>
+                    <CardDescription>Введіть параметри алгоритму</CardDescription>
                 </CardHeader>
 
                 <CardContent>
-                    <div className="mt-6 max-w-2xl flex gap-2">
+                    <div className="max-w-2xl flex gap-2">
                         <div className="flex gap-2 items-center max-w-30">
+                        <label className="text-gray-500 text-[14px]">Kmax:</label>
                             <Input
                                 type="number"
                                 value={antColonyParams.Kmax}
@@ -458,6 +459,7 @@ export default function MatrixEditor() {
                         </div>
 
                         <div className="flex gap-2 items-center max-w-30">
+                        <label className="text-gray-500 text-[14px]">L:</label>
                             <Input
                                 type="number"
                                 value={antColonyParams.num_ants}
@@ -470,6 +472,7 @@ export default function MatrixEditor() {
                         </div>
 
                         <div className="flex gap-2 items-center max-w-30">
+                        <label className="text-gray-500 text-[14px]">α:</label>
                             <Input
                                 type="number"
                                 value={antColonyParams.alpha}
@@ -482,6 +485,7 @@ export default function MatrixEditor() {
                         </div>
 
                         <div className="flex gap-2 items-center max-w-30">
+                        <label className="text-gray-500 text-[14px]">β:</label>
                             <Input
                                 type="number"
                                 value={antColonyParams.beta}
@@ -494,6 +498,7 @@ export default function MatrixEditor() {
                         </div>
 
                         <div className="flex gap-2 items-center max-w-30">
+                        <label className="text-gray-500 text-[14px]">p:</label>
                             <Input
                                 type="number"
                                 value={antColonyParams.p}
@@ -506,6 +511,7 @@ export default function MatrixEditor() {
                         </div>
 
                         <div className="flex gap-2 items-center max-w-30">
+                        <label className="text-gray-500 text-[14px]">τ0:</label>
                             <Input
                                 type="number"
                                 value={antColonyParams.tau}
@@ -520,7 +526,7 @@ export default function MatrixEditor() {
                 </CardContent>
             </Card>
 
-            <Card className="w-full overflow-auto">
+            <Card className="w-full overflow-auto ">
                 <div className="mx-6 max-w-2xl flex-col gap-2">
                     <div className="flex my-5">
                         <Button onClick={handleSolve}>Solve</Button>
@@ -534,6 +540,7 @@ export default function MatrixEditor() {
                         rowLabels={rowLabels}
                         setRowLabels={setRowLabels}
                         isDisabled={true}
+                      
                         showControls={false}
                     />
                     <div className="flex gap-2 mt-6 my-5 items-center max-w-30">

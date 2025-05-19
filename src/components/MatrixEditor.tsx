@@ -131,7 +131,9 @@ export default function MatrixEditor() {
 
         const connectWebSocket = () => {
             try {
-                webSocket.current = new WebSocket('ws://localhost:8000/ws/solve');
+                const WS_BASE_URL = import.meta.env.VITE_WS_BASE_URL || 'ws://localhost:8000';
+
+                webSocket.current = new WebSocket(`${WS_BASE_URL}/ws/solve`);
 
                 webSocket.current.onopen = () => {
                     console.log("Connected to WebSocket");
@@ -235,14 +237,14 @@ export default function MatrixEditor() {
                         <Input type="text" id="x" placeholder="Company" value={newColumnLabel}
                                onChange={e => setNewColumnLabel(e.target.value)}/>
                         <div className="flex justify-end">
-                            <Button onClick={addColumn} className="min-w-40">Add Company</Button>
+                            <Button onClick={addColumn} className="min-w-40">Додати компанію</Button>
                         </div>
                     </div>
                     <div className="flex gap-2 items-center">
                         <Input type="text" id="y" placeholder="Technics" value={newRowLabel}
                                onChange={e => setNewRowLabel(e.target.value)}/>
                         <div className="flex justify-end">
-                            <Button onClick={addRow} className="min-w-40">Add Technics</Button>
+                            <Button onClick={addRow} className="min-w-40">Додати обладнання</Button>
                         </div>
                     </div>
                 </div>
@@ -251,7 +253,6 @@ export default function MatrixEditor() {
             <Card className="w-full overflow-auto">
                 <CardHeader>
                     <CardTitle>Матриця Цін</CardTitle>
-                    <CardDescription>Enter numeric values in the matrix below.</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <Matrix
@@ -303,7 +304,6 @@ export default function MatrixEditor() {
             <Card className="w-full overflow-auto">
                 <CardHeader>
                     <CardTitle>Матриця Технічного Ресурсу</CardTitle>
-                    <CardDescription>Enter numeric values in the matrix below.</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <Matrix
@@ -367,7 +367,6 @@ export default function MatrixEditor() {
             <Card className="w-full overflow-auto">
                 <CardHeader>
                     <CardTitle>Матриця Знижок</CardTitle>
-                    <CardDescription>Enter numeric values in the matrix below.</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <Matrix
@@ -440,7 +439,6 @@ export default function MatrixEditor() {
             <Card className="w-full overflow-auto">
                 <CardHeader>
                     <CardTitle>Алгоритм мурашиних колоній</CardTitle>
-                    <CardDescription>Введіть параметри алгоритму</CardDescription>
                 </CardHeader>
 
                 <CardContent>
@@ -566,9 +564,6 @@ export default function MatrixEditor() {
             <Card>
                 <CardHeader>
                     <CardTitle>Графік порівняння алгоритмів</CardTitle>
-                    <CardDescription>
-                        Порівняння результатів роботи алгоритмів по ітераціях
-                    </CardDescription>
                 </CardHeader>
                 <CardContent>
                     <Chart data={chartData}/>

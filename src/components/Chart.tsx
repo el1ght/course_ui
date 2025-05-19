@@ -6,7 +6,7 @@ import {
     ChartLegend,
     ChartLegendContent,
 } from "@/components/ui/chart"
-import {Area, AreaChart, CartesianGrid, XAxis} from "recharts"
+import {Area, AreaChart, CartesianGrid, XAxis, YAxis} from "recharts"
 
 interface ChartData {
     iteration: number;
@@ -34,7 +34,7 @@ const chartConfig = {
 
 export function Chart({ data }: ChartProps) {
     return (
-        <ChartContainer config={chartConfig}>
+        <ChartContainer config={chartConfig} className="w-full min-h-[200px] max-h-[400px]">
             <AreaChart
                 accessibilityLayer
                 data={data}
@@ -51,6 +51,11 @@ export function Chart({ data }: ChartProps) {
                     tickMargin={8}
                     minTickGap={32}
                     tickFormatter={(value) => value}
+                />
+                <YAxis
+                    axisLine={false}
+                    tickLine={false}
+                    domain={[(dataMin: number) => Math.round(dataMin * 0.8), (dataMax: number) => Math.round(dataMax * 1.2)]}
                 />
                 <ChartTooltip
                     cursor={false}

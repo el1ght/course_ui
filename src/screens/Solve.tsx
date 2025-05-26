@@ -1,6 +1,7 @@
-import {Card, CardHeader, CardTitle, CardDescription, CardContent} from "@/components/ui/card"
-import {Input} from "@/components/ui/input"
-import {Button} from "@/components/ui/button"
+import {Card, CardHeader, CardTitle, CardContent} from "@/components/ui/card.tsx"
+import {Input} from "@/components/ui/input.tsx"
+import {ValidatedInput} from "@/components/ui/validated-input.tsx"
+import {Button} from "@/components/ui/button.tsx"
 import {useEffect, useRef, useState} from "react"
 
 import {Matrix} from "@/components/Matrix.tsx";
@@ -30,7 +31,7 @@ interface WebSocketData {
     algorithm_parameters: AlgorithmParameters;
 }
 
-export default function MatrixEditor() {
+export default function Solve() {
     const createMatrix = (rows: number = 3, cols: number = 3, value: number = 1) =>
         Array(rows).fill(value).map(() => Array(cols).fill(value));
     const [priceMatrix, setPriceMatrix] = useState<number[][]>(createMatrix(3, 3));
@@ -264,27 +265,30 @@ export default function MatrixEditor() {
                         setRowLabels={setRowLabels}
                         onRemoveColumn={removeColumn}
                         onRemoveRow={removeRow}
+                        min={0}
+                        step={100}
                     />
                 </CardContent>
                 <div className="mx-6 my-5 max-w-sm flex gap-2">
                     <div className="flex gap-2 items-center max-w-30">
-                        <Input
+                        <ValidatedInput
                             type="number"
                             value={priceMinMax.min}
-                            onChange={(e) => setPriceMinMax(prev => ({...prev, min: Number(e.target.value)}))}
+                            onChange={(value) => setPriceMinMax(prev => ({...prev, min: Number(value)}))}
                             placeholder="Min"
-                            min="0"
-                            step="100"
+                            min={0}
+                            step={100}
+                            max={priceMinMax.max}
                         />
                     </div>
                     <div className="flex gap-2 items-center max-w-30">
-                        <Input
+                        <ValidatedInput
                             type="number"
                             value={priceMinMax.max}
-                            onChange={(e) => setPriceMinMax(prev => ({...prev, max: Number(e.target.value)}))}
+                            onChange={(value) => setPriceMinMax(prev => ({...prev, max: Number(value)}))}
                             placeholder="Max"
                             min={priceMinMax.min}
-                            step="100"
+                            step={100}
                         />
                     </div>
                     <div className="flex justify-end">
@@ -315,35 +319,40 @@ export default function MatrixEditor() {
                         setRowLabels={setRowLabels}
                         onRemoveColumn={removeColumn}
                         onRemoveRow={removeRow}
+                        min={0}
+                        step={100}
                     />
                     <div className="mt-4">
-                        <Input
+                        <ValidatedInput
                             type="number"
                             value={totalResource}
-                            onChange={(e) => setTotalResource(Number(e.target.value))}
+                            onChange={(value) => setTotalResource(Number(value))}
                             placeholder="Загальний ресурс"
+                            min={0}
+                            step={100}
                         />
                     </div>
                 </CardContent>
                 <div className="mx-6 my-5 max-w-sm flex gap-2">
                     <div className="flex gap-2 items-center max-w-30">
-                        <Input
+                        <ValidatedInput
                             type="number"
                             value={resourceMinMax.min}
-                            onChange={(e) => setResourceMinMax(prev => ({...prev, min: Number(e.target.value)}))}
+                            onChange={(value) => setResourceMinMax(prev => ({...prev, min: Number(value)}))}
                             placeholder="Min"
-                            min="0"
-                            step="100"
+                            min={0}
+                            step={100}
+                            max={resourceMinMax.max}
                         />
                     </div>
                     <div className="flex gap-2 items-center max-w-30">
-                        <Input
+                        <ValidatedInput
                             type="number"
                             value={resourceMinMax.max}
-                            onChange={(e) => setResourceMinMax(prev => ({...prev, max: Number(e.target.value)}))}
+                            onChange={(value) => setResourceMinMax(prev => ({...prev, max: Number(value)}))}
                             placeholder="Max"
                             min={resourceMinMax.min}
-                            step="100"
+                            step={100}
                         />
                     </div>
                     <div className="flex justify-end">
@@ -378,29 +387,32 @@ export default function MatrixEditor() {
                         setRowLabels={setRowLabels}
                         onRemoveColumn={removeColumn}
                         onRemoveRow={removeRow}
+                        min={0}
+                        max={1}
+                        step={0.1}
                     />
                 </CardContent>
                 <div className="mx-6 my-5 max-w-sm flex gap-2">
                     <div className="flex gap-2 items-center max-w-30">
-                        <Input
+                        <ValidatedInput
                             type="number"
                             value={discountMinMax.min}
-                            onChange={(e) => setDiscountMinMax(prev => ({...prev, min: Number(e.target.value)}))}
+                            onChange={(value) => setDiscountMinMax(prev => ({...prev, min: Number(value)}))}
                             placeholder="Min"
-                            step="0.1"
-                            min="0"
-                            max="1"
+                            step={0.1}
+                            min={0}
+                            max={discountMinMax.max}
                         />
                     </div>
                     <div className="flex gap-2 items-center max-w-30">
-                        <Input
+                        <ValidatedInput
                             type="number"
                             value={discountMinMax.max}
-                            onChange={(e) => setDiscountMinMax(prev => ({...prev, max: Number(e.target.value)}))}
+                            onChange={(value) => setDiscountMinMax(prev => ({...prev, max: Number(value)}))}
                             placeholder="Max"
-                            step="0.1"
+                            step={0.1}
                             min={discountMinMax.min}
-                            max="1"
+                            max={1}
                         />
                     </div>
                     <div className="flex justify-end">
@@ -423,13 +435,15 @@ export default function MatrixEditor() {
                     <div className="max-w-sm flex gap-2">
                         <div className="flex gap-2 items-center max-w-30">
                             <label className="text-gray-500 text-[14px]">Kmax</label>
-                            <Input
+                            <ValidatedInput
                                 type="number"
                                 value={probabilisticParams.Kmax}
-                                onChange={(e) => setProbabilisticParams({
-                                    Kmax: Number(e.target.value)
+                                onChange={(value) => setProbabilisticParams({
+                                    Kmax: Number(value)
                                 })}
                                 placeholder="Kmax"
+                                min={1}
+                                step={1}
                             />
                         </div>
                     </div>
@@ -445,79 +459,92 @@ export default function MatrixEditor() {
                     <div className="max-w-2xl flex gap-2">
                         <div className="flex gap-2 items-center max-w-30">
                         <label className="text-gray-500 text-[14px]">Kmax:</label>
-                            <Input
+                            <ValidatedInput
                                 type="number"
                                 value={antColonyParams.Kmax}
-                                onChange={(e) => setAntColonyParams(prev => ({
+                                onChange={(value) => setAntColonyParams(prev => ({
                                     ...prev,
-                                    Kmax: Number(e.target.value)
+                                    Kmax: Number(value)
                                 }))}
                                 placeholder="Kmax"
+                                min={1}
+                                step={1}
                             />
                         </div>
 
                         <div className="flex gap-2 items-center max-w-30">
                         <label className="text-gray-500 text-[14px]">L:</label>
-                            <Input
+                            <ValidatedInput
                                 type="number"
                                 value={antColonyParams.num_ants}
-                                onChange={(e) => setAntColonyParams(prev => ({
+                                onChange={(value) => setAntColonyParams(prev => ({
                                     ...prev,
-                                    num_ants: Number(e.target.value)
+                                    num_ants: Number(value)
                                 }))}
                                 placeholder="Кількість мурах"
+                                min={1}
+                                step={1}
                             />
                         </div>
 
                         <div className="flex gap-2 items-center max-w-30">
                         <label className="text-gray-500 text-[14px]">α:</label>
-                            <Input
+                            <ValidatedInput
                                 type="number"
                                 value={antColonyParams.alpha}
-                                onChange={(e) => setAntColonyParams(prev => ({
+                                onChange={(value) => setAntColonyParams(prev => ({
                                     ...prev,
-                                    alpha: Number(e.target.value)
+                                    alpha: Number(value)
                                 }))}
                                 placeholder="Альфа"
+                                min={0}
+                                step={0.1}
                             />
                         </div>
 
                         <div className="flex gap-2 items-center max-w-30">
                         <label className="text-gray-500 text-[14px]">β:</label>
-                            <Input
+                            <ValidatedInput
                                 type="number"
                                 value={antColonyParams.beta}
-                                onChange={(e) => setAntColonyParams(prev => ({
+                                onChange={(value) => setAntColonyParams(prev => ({
                                     ...prev,
-                                    beta: Number(e.target.value)
+                                    beta: Number(value)
                                 }))}
                                 placeholder="Бета"
+                                min={0}
+                                step={0.1}
                             />
                         </div>
 
                         <div className="flex gap-2 items-center max-w-30">
                         <label className="text-gray-500 text-[14px]">p:</label>
-                            <Input
+                            <ValidatedInput
                                 type="number"
                                 value={antColonyParams.p}
-                                onChange={(e) => setAntColonyParams(prev => ({
+                                onChange={(value) => setAntColonyParams(prev => ({
                                     ...prev,
-                                    p: Number(e.target.value)
+                                    p: Number(value)
                                 }))}
                                 placeholder="Випаровування"
+                                min={0}
+                                max={1}
+                                step={0.1}
                             />
                         </div>
 
                         <div className="flex gap-2 items-center max-w-30">
                         <label className="text-gray-500 text-[14px]">τ0:</label>
-                            <Input
+                            <ValidatedInput
                                 type="number"
                                 value={antColonyParams.tau}
-                                onChange={(e) => setAntColonyParams(prev => ({
+                                onChange={(value) => setAntColonyParams(prev => ({
                                     ...prev,
-                                    tau: Number(e.target.value)
+                                    tau: Number(value)
                                 }))}
                                 placeholder="Початковий феромон"
+                                min={0}
+                                step={0.1}
                             />
                         </div>
                     </div>
@@ -542,7 +569,7 @@ export default function MatrixEditor() {
                         showControls={false}
                     />
                     <div className="flex gap-2 mt-6 my-5 items-center max-w-30">
-                        <Input type="number" disabled id="output" value={probValue} placeholder="Output"/>
+                        <ValidatedInput type="number" disabled id="output" value={probValue} placeholder="Output"/>
                     </div>
                     <h2 className="mt-6 mb-4">Алгоритм мурашиних колоній</h2>
                     <Matrix
@@ -556,7 +583,7 @@ export default function MatrixEditor() {
                         showControls={false}
                     />
                     <div className="flex gap-2 mt-6 my-5 items-center max-w-30">
-                        <Input type="number" disabled id="output" value={antValue} placeholder="Output"/>
+                        <ValidatedInput type="number" disabled id="output" value={antValue} placeholder="Output"/>
                     </div>
                 </div>
             </Card>

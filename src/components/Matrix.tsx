@@ -1,17 +1,22 @@
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { ValidatedInput } from "@/components/ui/validated-input"
+import { Dispatch, SetStateAction } from "react"
 
 interface MatrixProps {
     matrix: number[][]
-    setMatrix: (matrix: number[][]) => void
+    setMatrix: Dispatch<SetStateAction<number[][]>>
     columnLabels: string[]
-    setColumnLabels: (labels: string[]) => void
+    setColumnLabels: Dispatch<SetStateAction<string[]>>
     rowLabels: string[]
-    setRowLabels: (labels: string[]) => void
+    setRowLabels: Dispatch<SetStateAction<string[]>>
     isDisabled?: boolean
     showControls?: boolean
     onRemoveColumn?: (colIndex: number) => void
     onRemoveRow?: (rowIndex: number) => void
+    min?: number
+    max?: number
+    step?: number
 }
 
 export function Matrix({
@@ -25,10 +30,13 @@ export function Matrix({
                            showControls = true,
                            onRemoveColumn,
                            onRemoveRow,
+                           min,
+                           max,
+                           step = 1,
                        }: MatrixProps) {
 
     const handleChange = (row: number, col: number, value: number) => {
-        setMatrix(prev => {
+        setMatrix((prev: number[][]) => {
             const updated = [...prev]
             updated[row] = [...updated[row]]
             updated[row][col] = value
@@ -37,7 +45,7 @@ export function Matrix({
     }
 
     const handleColumnLabelChange = (index: number, value: string) => {
-        setColumnLabels(prev => {
+        setColumnLabels((prev: string[]) => {
             const updated = [...prev]
             updated[index] = value
             return updated
@@ -45,7 +53,7 @@ export function Matrix({
     }
 
     const handleRowLabelChange = (index: number, value: string) => {
-        setRowLabels(prev => {
+        setRowLabels((prev: string[]) => {
             const updated = [...prev]
             updated[index] = value
             return updated
@@ -56,14 +64,14 @@ export function Matrix({
         if (onRemoveColumn) {
             onRemoveColumn(colIndex)
         }
-        setColumnLabels(prev => prev.filter((_, index) => index !== colIndex))
+        setColumnLabels((prev: string[]) => prev.filter((_: string, index: number) => index !== colIndex))
     }
 
     const removeRow = (rowIndex: number) => {
         if (onRemoveRow) {
             onRemoveRow(rowIndex)
         }
-        setRowLabels(prev => prev.filter((_, index) => index !== rowIndex))
+        setRowLabels((prev: string[]) => prev.filter((_: string, index: number) => index !== rowIndex))
     }
 
     return (
@@ -99,14 +107,16 @@ export function Matrix({
                             )}
                         </div>
                         {row.map((value, colIndex) => (
-                            <Input
+                            <ValidatedInput
                                 key={`${rowIndex}-${colIndex}`}
                                 type="number"
-                                step="any"
+                                step={step}
+                                min={min}
+                                max={max}
                                 placeholder="0"
                                 value={value}
                                 disabled={isDisabled}
-                                onChange={e => handleChange(rowIndex, colIndex, e.target.value)}
+                                onValueChange={(newValue) => handleChange(rowIndex, colIndex, newValue)}
                             />
                         ))}
                         <div></div>

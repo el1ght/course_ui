@@ -9,10 +9,11 @@ interface ValidatedInputProps extends Omit<React.InputHTMLAttributes<HTMLInputEl
     onValueChange?: (value: number) => void
     onChange?: (value: number) => void
     error?: string
+    isInteger?: boolean
 }
 
 const ValidatedInput = React.forwardRef<HTMLInputElement, ValidatedInputProps>(
-    ({ className, min, max, step = 1, onValueChange, onChange, error, value, ...props }, ref) => {
+    ({ className, min, max, step = 1, onValueChange, onChange, error, value, isInteger, ...props }, ref) => {
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             const inputValue = e.target.value
             const numValue = Number(inputValue)
@@ -26,6 +27,11 @@ const ValidatedInput = React.forwardRef<HTMLInputElement, ValidatedInputProps>(
 
             // Check if input is a valid number
             if (isNaN(numValue)) {
+                return
+            }
+
+            // Check if number is integer when isInteger prop is true
+            if (isInteger && !Number.isInteger(numValue)) {
                 return
             }
 

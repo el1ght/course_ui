@@ -249,6 +249,7 @@ const Experiment4 = () => {
                             min={1}
                             step={1}
                             max={1000}
+                            isInteger={true}
                         />
                     </div>
 
@@ -264,6 +265,7 @@ const Experiment4 = () => {
                                     min={1}
                                     step={1}
                                     max={100}
+                                    isInteger={true}
                                 />
                             </div>
                             <div className="flex gap-2 items-center max-w-40">
@@ -276,6 +278,7 @@ const Experiment4 = () => {
                                     min={1}
                                     step={1}
                                     max={100}
+                                    isInteger={true}
                                 />
                             </div>
                         </div>
@@ -293,6 +296,7 @@ const Experiment4 = () => {
                                     min={1}
                                     step={100}
                                     max={parameters.cRange.max}
+                                    isInteger={true}
                                 />
                             </div>
                             <div className="flex gap-2 items-center max-w-40">
@@ -304,6 +308,7 @@ const Experiment4 = () => {
                                     placeholder="Cmax"
                                     min={parameters.cRange.min}
                                     step={100}
+                                    isInteger={true}
                                 />
                             </div>
                         </div>
@@ -321,6 +326,7 @@ const Experiment4 = () => {
                                     min={1}
                                     step={100}
                                     max={parameters.bRange.max}
+                                    isInteger={true}
                                 />
                             </div>
                             <div className="flex gap-2 items-center max-w-40">
@@ -332,6 +338,7 @@ const Experiment4 = () => {
                                     placeholder="Bmax"
                                     min={parameters.bRange.min}
                                     step={100}
+                                    isInteger={true}
                                 />
                             </div>
                         </div>
@@ -420,6 +427,7 @@ const Experiment4 = () => {
                                 placeholder="Kmax"
                                 min={1}
                                 step={100}
+                                isInteger={true}
                             />
                         </div>
                     </div>
@@ -443,6 +451,7 @@ const Experiment4 = () => {
                                 placeholder="Kmax"
                                 min={1}
                                 step={100}
+                                isInteger={true}
                             />
                         </div>
 
@@ -455,6 +464,7 @@ const Experiment4 = () => {
                                 placeholder="L"
                                 min={1}
                                 step={1}
+                                isInteger={true}
                             />
                         </div>
 

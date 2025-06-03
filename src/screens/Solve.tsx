@@ -267,6 +267,7 @@ export default function Solve() {
                         onRemoveRow={removeRow}
                         min={0}
                         step={100}
+                        isInteger={true}
                     />
                 </CardContent>
                 <div className="mx-6 my-5 max-w-sm flex gap-2">
@@ -279,6 +280,7 @@ export default function Solve() {
                             min={0}
                             step={100}
                             max={priceMinMax.max}
+                            isInteger={true}
                         />
                     </div>
                     <div className="flex gap-2 items-center max-w-30">
@@ -289,6 +291,7 @@ export default function Solve() {
                             placeholder="Max"
                             min={priceMinMax.min}
                             step={100}
+                            isInteger={true}
                         />
                     </div>
                     <div className="flex justify-end">
@@ -321,6 +324,7 @@ export default function Solve() {
                         onRemoveRow={removeRow}
                         min={0}
                         step={100}
+                        isInteger={true}
                     />
                     <div className="mt-4">
                         <ValidatedInput
@@ -330,6 +334,7 @@ export default function Solve() {
                             placeholder="Загальний ресурс"
                             min={0}
                             step={100}
+                            isInteger={true}
                         />
                     </div>
                 </CardContent>
@@ -343,6 +348,7 @@ export default function Solve() {
                             min={0}
                             step={100}
                             max={resourceMinMax.max}
+                            isInteger={true}
                         />
                     </div>
                     <div className="flex gap-2 items-center max-w-30">
@@ -353,17 +359,24 @@ export default function Solve() {
                             placeholder="Max"
                             min={resourceMinMax.min}
                             step={100}
+                            isInteger={true}
                         />
                     </div>
                     <div className="flex justify-end">
                         <Button
                             onClick={() => {
+                                // const newMatrix = randomizeMatrix(resourceMatrix, resourceMinMax.min, resourceMinMax.max);
+                                // setResourceMatrix(newMatrix);
+                                // // Автоматично встановлюємо загальний ресурс як суму всіх елементів помножену на 1.2
+                                // const totalSum = newMatrix.reduce((sum, row) =>
+                                //     sum + row.reduce((rowSum, cell) => rowSum + cell, 0), 0);
+                                // setTotalResource(Math.round(totalSum / 10));
                                 const newMatrix = randomizeMatrix(resourceMatrix, resourceMinMax.min, resourceMinMax.max);
                                 setResourceMatrix(newMatrix);
-                                // Автоматично встановлюємо загальний ресурс як суму всіх елементів помножену на 1.2
                                 const totalSum = newMatrix.reduce((sum, row) =>
                                     sum + row.reduce((rowSum, cell) => rowSum + cell, 0), 0);
-                                setTotalResource(Math.round(totalSum / 10));
+                                const minValue = Math.min(...newMatrix.flat());
+                                setTotalResource(generateRandomNumber(minValue, totalSum));
                             }}
                         >
                             Randomize
@@ -444,6 +457,7 @@ export default function Solve() {
                                 placeholder="Kmax"
                                 min={1}
                                 step={1}
+                                isInteger={true}
                             />
                         </div>
                     </div>
@@ -469,6 +483,7 @@ export default function Solve() {
                                 placeholder="Kmax"
                                 min={1}
                                 step={1}
+                                isInteger={true}
                             />
                         </div>
 
@@ -484,6 +499,7 @@ export default function Solve() {
                                 placeholder="Кількість мурах"
                                 min={1}
                                 step={1}
+                                isInteger={true}
                             />
                         </div>
 

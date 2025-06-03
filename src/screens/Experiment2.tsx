@@ -267,6 +267,7 @@ const Experiment2 = () => {
                                     min={1}
                                     step={1}
                                     max={100}
+                                    isInteger={true}
                                 />
                             </div>
                             <div className="flex gap-2 items-center max-w-40">
@@ -279,6 +280,7 @@ const Experiment2 = () => {
                                     min={1}
                                     step={1}
                                     max={100}
+                                    isInteger={true}
                                 />
                             </div>
                         </div>
@@ -296,6 +298,7 @@ const Experiment2 = () => {
                                     min={1}
                                     step={100}
                                     max={parameters.cRange.max}
+                                    isInteger={true}
                                 />
                             </div>
                             <div className="flex gap-2 items-center max-w-40">
@@ -307,6 +310,7 @@ const Experiment2 = () => {
                                     placeholder="Cmax"
                                     min={parameters.cRange.min}
                                     step={100}
+                                    isInteger={true}
                                 />
                             </div>
                         </div>
@@ -324,6 +328,7 @@ const Experiment2 = () => {
                                     min={1}
                                     step={100}
                                     max={parameters.bRange.max}
+                                    isInteger={true}
                                 />
                             </div>
                             <div className="flex gap-2 items-center max-w-40">
@@ -335,6 +340,7 @@ const Experiment2 = () => {
                                     placeholder="Bmax"
                                     min={parameters.bRange.min}
                                     step={100}
+                                    isInteger={true}
                                 />
                             </div>
                         </div>
@@ -430,18 +436,6 @@ const Experiment2 = () => {
                 <CardContent>
                     <div className="max-w-2xl flex gap-2">
                         <div className="flex gap-2 items-center max-w-30">
-                            <label className="text-gray-500 text-[14px]">L:</label>
-                            <ValidatedInput
-                                type="number"
-                                value={parameters.l}
-                                onChange={(value) => setParameters(prev => ({ ...prev, l: Number(value) }))}
-                                placeholder="L"
-                                min={1}
-                                step={1}
-                            />
-                        </div>
-
-                        <div className="flex gap-2 items-center max-w-30">
                             <label className="text-gray-500 text-[14px]">Kmax:</label>
                             <ValidatedInput
                                 type="number"
@@ -450,6 +444,20 @@ const Experiment2 = () => {
                                 placeholder="Kmax"
                                 min={1}
                                 step={100}
+                                isInteger={true}
+                            />
+                        </div>
+
+                        <div className="flex gap-2 items-center max-w-30">
+                            <label className="text-gray-500 text-[14px]">L:</label>
+                            <ValidatedInput
+                                type="number"
+                                value={parameters.l}
+                                onChange={(value) => setParameters(prev => ({ ...prev, l: Number(value) }))}
+                                placeholder="L"
+                                min={1}
+                                step={1}
+                                isInteger={true}
                             />
                         </div>
 

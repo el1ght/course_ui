@@ -17,6 +17,7 @@ interface MatrixProps {
     min?: number
     max?: number
     step?: number
+    isInteger?: boolean
 }
 
 export function Matrix({
@@ -33,6 +34,7 @@ export function Matrix({
                            min,
                            max,
                            step = 1,
+                           isInteger,
                        }: MatrixProps) {
 
     const handleChange = (row: number, col: number, value: number) => {
@@ -113,6 +115,7 @@ export function Matrix({
                                 step={step}
                                 min={min}
                                 max={max}
+                                isInteger={isInteger}
                                 placeholder="0"
                                 value={value}
                                 disabled={isDisabled}

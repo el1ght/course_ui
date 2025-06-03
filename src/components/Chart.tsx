@@ -55,7 +55,7 @@ export function Chart({ data }: ChartProps) {
                 <YAxis
                     axisLine={false}
                     tickLine={false}
-                    domain={[(dataMin: number) => Math.round(dataMin * 0.8), (dataMax: number) => Math.round(dataMax * 1.2)]}
+                    domain={[(dataMin: number) => Math.round(dataMin * 0.9), (dataMax: number) => Math.round(dataMax * 1.1)]}
                 />
                 <ChartTooltip
                     cursor={false}
